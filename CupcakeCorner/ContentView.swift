@@ -14,25 +14,26 @@ struct ContentView: View {
         NavigationView {
             Form {
                 Section {
-                    Picker("Select your cake type", selection: $order.type) {
+                    Picker("Choisissez votre type de gâteau", selection: $order.type) {
                         ForEach(Order.types.indices, id: \.self) {
                             Text(Order.types[$0])
                         }
                     }
-                    Stepper("Number of cakes: \(order.quantity)", value: $order.quantity, in: 3...20)
+                    Stepper("Quantité de gâteau : \(order.quantity)", value: $order.quantity, in: 3...20)
                 }
                 
                 Section {
-                    Toggle("Any special requests?", isOn: $order.specialRequestEnabled)
+                    Toggle("Avez-vous des demandes particulières ?", isOn: $order.specialRequestEnabled)
 
                     if order.specialRequestEnabled {
-                        Toggle("Add extra frosting", isOn: $order.extraFrosting)
+                        Toggle("Ajouter de glaçage supplémentaire", isOn: $order.extraFrosting)
 
-                        Toggle("Add extra sprinkles", isOn: $order.addSprinkles)
+                        Toggle("Ajouter des paillettes supplémentaires", isOn: $order.addSprinkles)
                     }
                 }
+                
                 Section {
-                    NavigationLink("Delivery details") {
+                    NavigationLink("Details de livraison") {
                         AddressView(order: order)
                     }
                 }
